@@ -1,0 +1,112 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_weather",
+        "importPath": "weather",
+        "description": "weather",
+        "isExtraImport": true,
+        "detail": "weather",
+        "documentation": {}
+    },
+    {
+        "label": "serve",
+        "importPath": "waitress",
+        "description": "waitress",
+        "isExtraImport": true,
+        "detail": "waitress",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "pprint",
+        "importPath": "pprint",
+        "description": "pprint",
+        "isExtraImport": true,
+        "detail": "pprint",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def index():\n    return render_template(\"index.html\")\n@app.route(\"/weather\")\ndef get_weather():\n    city = request.args.get(\"city\")\n    # Check for empty strings or string with only spaces\n    if not bool(city.strip()):\n        # You could render \"City Not Found\" instead like we do below\n        city = \"Dar es Salaam\"\n    weather_data = get_current_weather(city)",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "get_weather",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def get_weather():\n    city = request.args.get(\"city\")\n    # Check for empty strings or string with only spaces\n    if not bool(city.strip()):\n        # You could render \"City Not Found\" instead like we do below\n        city = \"Dar es Salaam\"\n    weather_data = get_current_weather(city)\n    # City is not found by API\n    if not weather_data[\"cod\"] == 200:\n        return render_template(\"city-not-found.html\")",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\n@app.route(\"/index\")\ndef index():\n    return render_template(\"index.html\")\n@app.route(\"/weather\")\ndef get_weather():\n    city = request.args.get(\"city\")\n    # Check for empty strings or string with only spaces\n    if not bool(city.strip()):",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_weather",
+        "kind": 2,
+        "importPath": "weather",
+        "description": "weather",
+        "peekOfCode": "def get_current_weather(city=\"Kansas City\"):\n    request_url = f'http://api.openweathermap.org/data/2.5/weather?appid={os.getenv(\"API_KEY\")}&q={city}&units=metric'\n    weather_data = requests.get(request_url).json()\n    return weather_data\nif __name__ == \"__main__\":\n    print(\"\\n*** Get Current Weather Conditions ***\\n\")\n    city = input(\"\\nPlease enter a city name: \")\n    # Check for empty strings or string with only spaces\n    # This step is not required here\n    # if not bool(city.strip()):",
+        "detail": "weather",
+        "documentation": {}
+    }
+]
